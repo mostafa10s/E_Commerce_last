@@ -1,7 +1,7 @@
 ﻿
 
-using E_Commerce.Application.Services.Implementation;
-using E_Commerce.Application.Services.Interface;
+
+using E_Commerce.Application.Common.Dto.OrderDto;
 using E_Commerce.Domain.Const;
 using Microsoft.AspNetCore.Mvc;
 
@@ -64,7 +64,12 @@ namespace E_Commerce.Controllers
             }
             return Ok(result.order);
         }
-
+        [HttpPut("UpdataQuantity/{id}")]
+        public async Task<IActionResult> UpdataQuantities(string id, UpdataOrederItemQuantitiesDto order)
+        {
+            var result = await _ordertServices.UpdateQuantities(id, order.ProductId, order.ProductName, order.Quantity);
+            return Ok(result);
+        }
 
         [HttpPut("UpdataStatus/{id}")]
         public async Task<IActionResult> UpdataStatus(string id, OrderStatus order)

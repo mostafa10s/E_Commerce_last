@@ -19,7 +19,6 @@ namespace E_Commerce.Application.Services.Implementation
         
         
             _orderRepository = OrderRepository;
-
             _clienttServices = clienttServices;
             _productServices =productServices;
 
@@ -95,10 +94,8 @@ namespace E_Commerce.Application.Services.Implementation
             }
             order.Obj.RemoveOrderItem(productId);
 
-            var filter = order.Filt;
 
-
-        await _orderRepository.UpdateAsync(filter, order.Obj);
+        await _orderRepository.UpdateAsync(order.Filt, order.Obj);
             return true;
         }
 
@@ -110,9 +107,27 @@ namespace E_Commerce.Application.Services.Implementation
                 return false;
             }
             order.Obj.UpdateStatus(status);
-            var filter = order.Filt;
-            await _orderRepository.UpdateAsync(filter, order.Obj);
+          
+            await _orderRepository.UpdateAsync(order.Filt, order.Obj);
                 return true;
+        }
+        public async Task<Order> UpdateQuantities(string id, string proudctId, string proudctName, int quantity )
+        {
+            var order = await GetOneAsync(id);
+            if (order.Obj == null  )
+            {
+
+             throw new Exception  ( "the OrdertID not found.");
+            }
+            if (order.Obj.Status != OrderStatus.Pending)
+            {
+                throw new Exception("Could not change the Quantity because order is Delivered ");
+            }
+
+            order.Obj.UpdateQuantity(proudctId, quantity , proudctName);
+         
+         await _orderRepository.UpdateAsync(order.Filt, order.Obj);
+            return order.Obj;
         }
 
 
@@ -125,12 +140,12 @@ namespace E_Commerce.Application.Services.Implementation
                 return false;
             }
 
-            var filter = order.Filt;
-            await _orderRepository.DeleteAsync(filter);
+         
+            await _orderRepository.DeleteAsync(order.Filt);
             return true;
         }
 
-      
+       
     }
 }
 

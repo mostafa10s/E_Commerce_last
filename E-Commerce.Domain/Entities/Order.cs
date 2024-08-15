@@ -55,6 +55,17 @@ namespace E_Commerce.Domain.Entities
                 TotalAmount -= item.TotalPrice;
             }
         }
+        public void UpdateQuantity(string productId,int quantity , string productName )
+        {
+            if (Status != OrderStatus.Pending) { return; }
+
+            var item = OrderItems.Find(oi => oi.ProductId == productId && oi.ProductName == productName);
+            if (item != null)
+            {
+                item.UpdateQuantity(quantity);
+            }
+
+            }
 
         public void UpdateStatus(OrderStatus status)
         {

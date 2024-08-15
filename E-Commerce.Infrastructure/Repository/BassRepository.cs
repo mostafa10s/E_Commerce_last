@@ -1,6 +1,8 @@
 ﻿
 
 
+using System.Linq.Expressions;
+
 namespace E_Commerce.Infrastructure.Repository
 {
     public class BassRepository<T>: IBassRepository<T> where T : class
@@ -31,6 +33,34 @@ namespace E_Commerce.Infrastructure.Repository
         {
             return await _collection.Find(FilterDefinition<T>.Empty).ToListAsync();
         }
+        //public async Task<IEnumerable<T>> GetAllAsync(
+        //Expression<Func<T, bool>> filter = null,
+        //Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        //int? page = null,
+        //int? pageSize = null)
+        //{
+        //    // Apply filtering
+        //    var query = _collection.AsQueryable();
+        //    if (filter != null)
+        //    {
+        //        query = query.Where(filter);
+        //    }
+
+        //    // Apply sorting
+        //    if (orderBy != null)
+        //    {
+        //        query = orderBy(query);
+        //    }
+
+        //    // Apply pagination
+        //    if (page.HasValue && pageSize.HasValue)
+        //    {
+        //        query = query.Skip((page.Value - 1) * pageSize.Value).Take(pageSize.Value);
+        //    }
+
+        //    return await Task.FromResult(query.ToList());
+        //}
+
 
         public async Task<T> GetOne(FilterDefinition<T> filter)
         {

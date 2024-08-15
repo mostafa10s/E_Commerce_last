@@ -1,6 +1,7 @@
 ﻿
-using E_Commerce.Application.Services.Implementation;
-using E_Commerce.Application.Services.Implementations;
+
+using E_Commerce.Application.Common.Dto.ProductDto;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.Controllers

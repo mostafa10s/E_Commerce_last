@@ -1,5 +1,4 @@
-﻿
-namespace E_Commerce.Application.Common.Dto
+﻿namespace E_Commerce.Application.Common.Dto.OrderDto
 {
     public class OrderDto
     {
@@ -9,9 +8,7 @@ namespace E_Commerce.Application.Common.Dto
 
         public decimal TotalAmount { get; set; }
 
-        //public List<string> OrderItems { get; set; }
-        //enum
-        //public List<string> Status { get; set; }
+
 
         public string ShippingAddress { get; set; }
 

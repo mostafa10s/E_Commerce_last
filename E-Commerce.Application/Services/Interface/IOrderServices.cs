@@ -10,5 +10,6 @@ namespace E_Commerce.Application.Services.Interface
         Task<bool> Removeitem(string id, string productId);
         Task<(Order? order, string? erorrMessage)> CreateOrderItem(string id, OrderItem item);
         Task<(Order? order, string? erorrMessage)> CreateOrder(string clientId, string shippingAddress, string paymentMethod);
+        Task<Order> UpdateQuantities(string id, string proudctid, string productName, int quantity);
     }
 }

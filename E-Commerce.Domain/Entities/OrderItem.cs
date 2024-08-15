@@ -16,5 +16,15 @@
             Quantity = quantity;
         }
       
+        public void UpdateQuantity( int quantity)
+        {
+            Quantity = quantity;
+          
+
+        }
+        
+
+
+
     }
 }
